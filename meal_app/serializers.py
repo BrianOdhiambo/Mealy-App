@@ -29,7 +29,7 @@ class MealSerializer(serializers.ModelSerializer):
 
 class CreateMenuSerializer(serializers.ModelSerializer):
 
-    menu_meals = MealSerializer(many=True)
+    # menu_meals = MealSerializer()
 
     class Meta:
         model = Menu
@@ -42,7 +42,7 @@ class CreateMenuSerializer(serializers.ModelSerializer):
 
 class MenuSerializer(serializers.ModelSerializer):
 
-    menu_meals = MealSerializer(many=True)
+    menu_meals = MealSerializer()
     created_by = AdminSerializer()
 
     class Meta:

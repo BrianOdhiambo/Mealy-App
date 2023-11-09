@@ -66,8 +66,19 @@ class Meal(models.Model):
     
 class Menu(models.Model):
     created_by = models.ForeignKey(Admin, on_delete=models.CASCADE)
-    menu_meals = models.ManyToManyField(Meal, related_name='menu_meals')
+    menu_meals = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name='meals')
     date = models.DateField()
+    
+    class Meta:
+        db_table = 'menu'
+
+# class MenuMeal(models.Model):
+#     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='meals')
+#     meals = models.ForeignKey(Meal, on_delete=models.CASCADE)
+
+#     class Meta:
+#         db_table = 'menu_meals'
+
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
