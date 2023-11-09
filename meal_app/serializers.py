@@ -53,7 +53,12 @@ class AddOrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'customer', 'menu', 'chosen_meal']
+        fields = ['id','menu', 'chosen_meal']
+
+    def create(self, validated_data):
+        customer = Customer.objects.get(user_id=self.context['customer_id'])
+        order = Order.objects.create(customer=customer, **validated_data)
+        return order
 
 class OrderSerializer(serializers.ModelSerializer):
 

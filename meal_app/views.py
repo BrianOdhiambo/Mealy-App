@@ -49,6 +49,11 @@ class OrderViewSet(ModelViewSet):
         if self.request.method in ['POST']:
             return [IsCustomer()]
         return [permissions.IsAuthenticated()]
+
+    def get_serializer_context(self):
+        return {
+            'customer_id': self.request.user.id
+        }
     
     def get_serializer_class(self):
         if self.request.method == 'POST':

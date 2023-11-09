@@ -16,7 +16,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -28,6 +28,7 @@ INSTALLED_APPS = [
 
     # Third party apps
     'rest_framework',
+    'corsheaders',
     'drf_yasg',
 
     # Default apps
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -185,3 +187,5 @@ CORS_ALLOW_METHODS = [
     'PATCH',
     'OPTIONS',
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://42b2-197-232-61-241.ngrok-free.app']
